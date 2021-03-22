@@ -1,3 +1,5 @@
+import pandas as pd
+
 class Order:
     def __init__(self, n, price, type, idd):
         self.n = n
@@ -59,8 +61,36 @@ class Book:
         print("------------------------")
         self.idd = self.idd + 1
 
+        self.panda()
+
     def print_order(self):
         for i in range(len(self.orders)):
             self.orders[i].toString()
 
+    def panda(self):
+        print("\n-----------DataFrame Buy----------")
+        dict_order_buy = {}
+        dict_order_buy["Name"] = [self.name for x in self.orders_buy]
+        dict_order_buy["Type"] = [x.type for x in self.orders_buy]
+        dict_order_buy["Stock"] = [x.n for x in self.orders_buy]
+        dict_order_buy["Price"] = [x.price for x in self.orders_buy]
+        dict_order_buy["idd"] = [x.idd for x in self.orders_buy]
+        #orders_str_sell = [x.toString() for x in self.orders_sell]
+        #for i in range(len(self.orders)):
+            #self.orders_str.append(self.orders[i].toString())
 
+        df1 = pd.DataFrame(dict_order_buy)
+        print(df1)
+        print("-----------------------------------")
+        #df2 = pd.DataFrame(orders_str_sell)
+
+        print("\n-----------DataFrame Sell----------")
+        dict_order_sell = {}
+        dict_order_sell["Name"] = [self.name for x in self.orders_buy]
+        dict_order_sell["Type"] = [x.type for x in self.orders_buy]
+        dict_order_sell["Stock"] = [x.n for x in self.orders_buy]
+        dict_order_sell["Price"] = [x.price for x in self.orders_buy]
+        dict_order_sell["idd"] = [x.idd for x in self.orders_buy]
+        df2 = pd.DataFrame(dict_order_sell)
+        print(df2)
+        print("-----------------------------------")
