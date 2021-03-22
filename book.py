@@ -59,25 +59,6 @@ class Book:
         print("------------------------")
         self.idd = self.idd + 1
 
-    def find_matching_order(self, order):
-        temp_price = order.price
-        temp_stock = order.n
-        boolean = True
-        if (order.type == "SELL" ):
-            for i in range(len(self.orders_buy)):
-                if (order.price <= self.order_buy[i].price and order.price >= self.orders_buy[i].n):
-                    print("Execute " + temp_stock + " at " + temp_price + " on TEST")
-                    temp_stock = temp_stock - order.n
-                    boolean = False
-        if (order.type == "BUY"):
-            for i in range(len(self.orders_sell)):
-                if (order.price >= self.order_sell[i].price and order.price >= self.orders_sell[i].n):
-                    print("Execute " + temp_stock + " at " + temp_price + " on TEST")
-                    temp_stock = temp_stock - order.n
-                    boolean = False
-        if(boolean):
-            self.update_order(order)
-
     def print_order(self):
         for i in range(len(self.orders)):
             self.orders[i].toString()
